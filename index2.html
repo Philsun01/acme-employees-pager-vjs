@@ -68,12 +68,13 @@
   <body>
 <h1> Acme Employee Lister</h1>
 
+
 <div id="pages" class='pageLinks'>
-    <div class = 'firstCell' id='firstPage'>First</div>
+    <div class = 'firstCell' id='firstPage'><a href='#first'>First</a></div>
     <div class = 'lastCell' id ='previousPage'>Previous</div>
-    <div class = 'lastCell' id ='currentPage'>1 </div>
+    <div class = 'lastCell' id ='currentPage'><a href='#1'>1</a> </div>
     <div class = 'emailCell' id='nextPage'>Next</div>
-    <div class = 'titleCell' id= 'lastPage'>Last</div>
+    <div class = 'titleCell' id= 'lastPage'><a href='#last'>Last</a></div>
 </div>
 
 
@@ -179,6 +180,12 @@
       lastPage.addEventListener('click', (ev) => {
         loadDataLast();
       });
+
+      window.addEventListener('hashchange', () =>{
+        const currentPage = window.location.hash;
+
+        loadDataLast();
+      })
 
     </script>
   </body>
