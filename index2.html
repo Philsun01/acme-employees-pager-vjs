@@ -1,10 +1,73 @@
 <html>
   <head>
     <style>
+      .userData{
+        display: flex;
+        flex-direction: row;
+        align-items:flex-start;
+
+      }
+      .firstCell {
+        display: flex;
+        padding: .5rem;
+        margin: 1rem;
+        width: 80px;
+      }
+      .lastCell {
+        display: flex;
+        padding: .5rem;
+        margin: 1rem;
+        width: 80px;
+      }
+      .emailCell {
+        display: flex;
+        padding: .5rem;
+        margin: 1rem;
+        width: 250px;
+      }
+      .titleCell {
+        display: flex;
+        padding: .5rem;
+        margin: 1rem;
+        width: 250px;
+      }
+
     </style>
   </head>
   <body>
+
+    <div id = "list">
+
+    </div>
+
     <script>
+      //fetch data
+      const loadData = async() => {
+        const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users');
+        const data = await response.json();
+        const dataArray = [...data.users];
+        console.log(Array.isArray(dataArray));
+        console.log(dataArray);
+        const html = dataArray.map((emp)=>{
+          return `<div class = "userData">
+                  <div class = 'firstCell'>${emp.firstName}</div>
+                  <div class = 'lastCell'>${emp.lastName}</div>
+                  <div class = 'emailCell'>${emp.email}</div>
+                  <div class = 'titleCell'>${emp.title}</div>
+                  </div>
+                  `
+          }).join('');
+
+        document.querySelector('#list').innerHTML = html;
+
+        //console.log(data);
+
+      }
+      loadData();
+
+      //convert to json
+      //display it in list
+      //then pages
 
     </script>
   </body>
